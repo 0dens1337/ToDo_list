@@ -13,6 +13,7 @@
 
     @include('includes.header')
 
+    @yield('content')
     @yield('main')
 
     <div class="container">
@@ -22,6 +23,6 @@
     @include('includes.footer')
 
     <script src="/docs/5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-</div>>
+</div>
 </body>
 </html>
