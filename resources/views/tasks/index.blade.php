@@ -15,7 +15,10 @@
                         @method('DELETE')
                         <button type="submit" class="form-control">Delete</button>
                     </form>
-                </div>
+            </div>
         @endforeach
+        <div>
+            {{ $tasks->links('pagination::bootstrap-5') }}
+        </div>
     </ul>
 @endsection
