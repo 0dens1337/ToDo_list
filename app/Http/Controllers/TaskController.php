@@ -12,9 +12,9 @@ class TaskController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
+    public function index()
     {
-        $tasks = Task::paginate(5);
+        $tasks = Task::paginate(10);
 
         return view('tasks.index', compact('tasks'));
     }

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <ul class="m-auto d-flex flex-column" style="width: 50%;">
+    <ul class="m-auto d-flex flex-column w-50">
         <h1 class="mb-5">Your Task</h1>
         <div class="list-group m-auto mb-4 border-0">
             <a href="{{ route('tasks.create') }}" class="list-group-item list-group-item-action list-group-item-success">Create your own To-Do list!</a>
@@ -18,7 +18,7 @@
             </div>
         @endforeach
         <div>
-            {{ $tasks->links('pagination::bootstrap-5') }}
+            {{ $tasks->links() }}
         </div>
     </ul>
 @endsection
