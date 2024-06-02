@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TaskController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +17,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+
+Route::get('/tasks', function () {
+    return view('tasks');
+})->middleware(['auth', 'verified'])->name('tasks');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+
 Route::get('/', function () {
     return view('main.home');
 });
@@ -22,6 +38,7 @@ Route::get('/about', function () {
     return view('main.about');
 });
 
-
-
+Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 Route::resource('tasks', TaskController::class);
+
+require __DIR__.'/auth.php';

@@ -11,10 +11,15 @@
 <body class="d-flex h-100 text-center text-bg-dark">
 <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
 
-    @include('includes.header')
+    <form action="{{ route('logout') }}" method="POST">
+        @csrf
+    </form>
 
+    @include('includes.header')
+    @yield('register')
     @yield('content')
     @yield('main')
+    @yield('login')
 
     <div class="container">
         @yield('about')
