@@ -14,7 +14,7 @@
                       rows="3">{{ isset($task) ? $task->description : null }}</textarea>
         </div>
         <div class="mb-3">
-            <button type="submit" class="btn btn-warning">Save it!</button>
+            <button type="submit" class="btn  btn-outline-primary">Save it!</button>
         </div>
     </form>
 @endsection
