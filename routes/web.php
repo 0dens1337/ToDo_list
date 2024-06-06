@@ -16,13 +16,6 @@ use App\Http\Controllers;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-
-
-Route::get('/tasks', function () {
-    return view('tasks');
-})->middleware(['auth', 'verified'])->name('tasks');
-
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -39,6 +32,8 @@ Route::get('/about', function () {
 });
 
 Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
-Route::resource('tasks', TaskController::class);
+Route::middleware('auth')->group(function () {
+    Route::resource('tasks', TaskController::class);
+});
 
 require __DIR__.'/auth.php';

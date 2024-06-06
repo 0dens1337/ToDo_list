@@ -2,7 +2,7 @@
 
 @section('content')
     <ul class="m-auto d-flex flex-column w-50">
-        <h1 class="mb-5">Your Task</h1>
+        <h1 class="mb-5">Your Tasks</h1>
         <div class="list-group m-auto mb-4 border-0">
             <a href="{{ route('tasks.create') }}" class="btn btn-outline-primary">Create your own To-Do list!</a>
         </div>
@@ -13,7 +13,7 @@
                     <form action="{{ route('tasks.destroy', $task->id) }}" method="POST" style="display:inline;">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-outline-secondary">Delete</button>
+                        <button type="submit" class="btn btn-outline-danger">Delete</button>
                     </form>
             </div>
         @endforeach

@@ -21,6 +21,7 @@
     @yield('content')
     @yield('main')
     @yield('login')
+    @yield('frgpass')
 
     <div class="container">
         @yield('about')
