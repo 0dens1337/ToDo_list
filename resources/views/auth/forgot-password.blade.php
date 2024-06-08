@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('frgpass')
+@section('main')
     <div class="d-flex justify-content-center align-items-center vh-100">
         <div class="col-md-5">
             <div class="card">
