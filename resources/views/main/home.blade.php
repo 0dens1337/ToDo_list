@@ -1,9 +1,7 @@
 @extends('layouts.app')
-
 @section('title')
     Home
 @endsection
-
 @section('main')
     <main class="px-3 h-100">
         <div class="h-100 m-auto d-flex flex-column justify-content-center flex-grow-1">

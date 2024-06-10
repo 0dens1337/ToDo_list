@@ -16,17 +16,18 @@ use Illuminate\View\View;
 
 class RegisteredUserController extends Controller
 {
-    public function create()
+    public function create(): View
     {
         return view('auth.register');
     }
 
-    public function store(RegisterUserRequest $request)
+    public function store(RegisterUserRequest $request): RedirectResponse
     {
         $validatedData = $request->validated();
         $validatedData['password'] = Hash::make($validatedData['password']);
         $user = User::create($validatedData);
         auth()->login($user);
-        return redirect()->route('/create');
+
+        return redirect()->route('/');
     }
 }

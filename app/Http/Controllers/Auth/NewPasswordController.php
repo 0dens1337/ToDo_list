@@ -3,14 +3,22 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\NewPasswordRequest;
+use Couchbase\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Support\Str;
+use Illuminate\Http\Request;
 
 class NewPasswordController extends Controller
 {
+
+    public function create(Request $request)
+    {
+        return view('auth.reset-password', ['request' => $request]);
+    }
+
     public function store(NewPasswordRequest $request): RedirectResponse
     {
         $status = Password::reset(

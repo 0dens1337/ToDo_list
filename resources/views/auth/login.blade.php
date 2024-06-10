@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('main')
-    <div class="container">
-        <div class="row justify-content-center">
+    <div class="px-3 h-100">
+        <div class="h-100 m-right d-flex flex-column justify-content-center flex-grow-1">
             <div class="col-md-5">
                 <div class="card">
                     <div class="card-header card-header-warning">
