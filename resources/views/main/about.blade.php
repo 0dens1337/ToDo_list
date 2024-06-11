@@ -5,6 +5,7 @@
 @endsection
 
 @section('about')
-    <h1>About US</h1>
-    <p>This page about us and FAQ.</p>
+    <div class="h-100 m-auto d-flex flex-column justify-content-center flex-grow-1"></div>
+        <h1>About US</h1>
+        <p>This page about us and FAQ.</p>
 @endsection
