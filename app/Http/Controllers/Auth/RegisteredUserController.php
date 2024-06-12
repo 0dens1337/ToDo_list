@@ -28,6 +28,6 @@ class RegisteredUserController extends Controller
         $user = User::create($validatedData);
         auth()->login($user);
 
-        return redirect()->route('/');
+        return redirect()->route('home');
     }
 }

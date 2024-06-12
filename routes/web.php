@@ -26,11 +26,11 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/', function () {
     return view('main.home');
-});
+})->name('home');
 
 Route::get('/about', function () {
     return view('main.about');
-});
+})->name('about');
 
 Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 

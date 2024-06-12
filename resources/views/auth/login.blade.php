@@ -1,8 +1,9 @@
 @extends('layouts.app')
 @section('main')
-    <div class="px-3 h-100">
-        <div class="h-100 m-right d-flex flex-column justify-content-center flex-grow-1">
-            <div class="col-md-5">
+    @include('includes.error')
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-5 mb-4">
                 <div class="card">
                     <div class="card-header card-header-warning">
                         <h4 class="card-title">{{ __('Login') }}</h4>
@@ -17,12 +18,6 @@
 
                                 <div class="col-md-6">
                                     <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-
-                                    @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
                                 </div>
                             </div>
 
@@ -31,12 +26,6 @@
 
                                 <div class="col-md-6">
                                     <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-
-                                    @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
                                 </div>
                             </div>
 

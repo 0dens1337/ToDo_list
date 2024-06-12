@@ -1,5 +1,5 @@
 @section('content')
-
+    @include('includes.error')
     <form action="{{ $action }}" method="POST" class="border w-50 p-4 m-auto">
         @csrf
         @method($method)

@@ -14,7 +14,7 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $tasks = Task::paginate(10);
+        $tasks = Auth::user()->tasks()->paginate(10);
 
         return view('tasks.index', compact('tasks'));
     }
@@ -32,7 +32,9 @@ class TaskController extends Controller
      */
     public function store(StoreTaskRequest $request)
     {
-        Task::create($request->validated());
+        $task = new Task($request->validated());
+        $task->user_id = Auth::id();
+        $task->save();
 
         return redirect()->route('tasks.index');
     }
