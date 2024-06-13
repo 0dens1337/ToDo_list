@@ -32,9 +32,7 @@ class TaskController extends Controller
      */
     public function store(StoreTaskRequest $request)
     {
-        $task = new Task($request->validated());
-        $task->user_id = Auth::id();
-        $task->save();
+        Auth::user()->getAuthIdentifier();
 
         return redirect()->route('tasks.index');
     }
