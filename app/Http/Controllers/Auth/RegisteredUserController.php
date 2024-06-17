@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Auth;
 
+
+use App\Enums\GenderEnum;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RegisterUserRequest;
 use App\Models\User;
@@ -13,12 +15,16 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
+use App\Enums\RoleEnum;
 
 class RegisteredUserController extends Controller
 {
     public function create(): View
     {
-        return view('auth.register');
+        $roles = RoleEnum::list();
+        $genders = GenderEnum::list();
+
+        return view('auth.register', compact('roles', 'genders'));
     }
 
     public function store(RegisterUserRequest $request): RedirectResponse

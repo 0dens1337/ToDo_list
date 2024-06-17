@@ -23,6 +23,7 @@
     @include('includes.header')
     @yield('content')
     @yield('main')
+    @yield('edit')
 
     <div class="container">
         @yield('about')

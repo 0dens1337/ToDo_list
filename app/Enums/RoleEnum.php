@@ -1,11 +1,27 @@
 <?php
-use App\Enums;
+namespace App\Enums;
 
-enum RoleEnum: string
+use Illuminate\Support\Collection;
+
+enum RoleEnum: int
 {
-    case ADMIN = 'admin';
-    case USER = 'user';
-    case GUEST = 'guest';
+    case ADMIN = 0;
+    case USER = 1;
+
+    public function name(): string
+    {
+        return match ($this) {
+            self::ADMIN => 'Admin',
+            self::USER => 'User',
+        };
+    }
+
+    public static function list(): Collection
+    {
+        return collect(self::cases())->mapWithKeys(function ($role) {
+            return [$role->value => $role->name()];
+        });
+    }
 }
 
 

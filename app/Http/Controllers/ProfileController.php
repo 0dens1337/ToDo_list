@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\GenderEnum;
+use App\Enums\RoleEnum;
 use App\Http\Requests\ProfileUpdateRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -16,9 +18,15 @@ class ProfileController extends Controller
      */
     public function edit(Request $request): View
     {
+        $roles = RoleEnum::list();
+        $genders = GenderEnum::list();
+
         return view('profile.edit', [
             'user' => $request->user(),
+            'roles' => $roles,
+            'genders' => $genders,
         ]);
+
     }
 
     /**
