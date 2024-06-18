@@ -30,10 +30,14 @@ class RegisterUserRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:8|confirmed',
-            'password_confirmation' => 'required|string|min:8|',
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'last_name' => ['nullable', 'string', 'max:255'],
+            'first_name' => ['nullable', 'string', 'max:255'],
+            'middle_name' => ['nullable', 'string', 'max:255'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'password_confirmation' => ['required', 'string', 'min:8'],
+            'birthday' => ['nullable', 'date'],
             'role' => ['required', 'integer', Rule::enum(RoleEnum::class)],
             'gender' => ['required', 'integer', Rule::enum(GenderEnum::class)],
         ];

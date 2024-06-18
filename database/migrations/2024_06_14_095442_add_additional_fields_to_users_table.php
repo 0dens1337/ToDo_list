@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->string('last_name')->nullable();
-            $table->string('firs_name')->nullable();
+            $table->string('first_name')->nullable();
             $table->string('middle_name')->nullable();
             $table->date('birthday')->nullable();
             $table->tinyInteger('gender')->nullable();
@@ -27,7 +27,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn(['last_name', 'middle_name', 'birthday',  'gender', 'role']);
+            $table->dropColumn(['last_name', 'first_name', 'middle_name', 'birthday',  'gender', 'role']);
         });
     }
 };

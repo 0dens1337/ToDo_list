@@ -25,6 +25,7 @@ class User extends Authenticatable
         'email',
         'password',
         'last_name',
+        'first_name',
         'middle_name',
         'birthday',
         'gender',
@@ -51,13 +52,20 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+
     public function getRoleNameAttribute(): string
     {
         return RoleEnum::list()[$this->role];
+    }
+
+    public function getGenderNameAttribute(): string
+    {
+        return GenderEnum::list()[$this->gender];
     }
 
     public function tasks(): HasMany
     {
         return $this->hasMany(Task::class);
     }
+
 }

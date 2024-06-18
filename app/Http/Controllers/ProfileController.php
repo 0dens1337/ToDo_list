@@ -16,6 +16,16 @@ class ProfileController extends Controller
     /**
      * Display the user's profile form.
      */
+
+
+    public function show(Request $request)
+    {
+        $user = auth()->user();
+
+        return view('profile.show', compact('user'));
+    }
+
+
     public function edit(Request $request): View
     {
         $roles = RoleEnum::list();
@@ -34,16 +44,11 @@ class ProfileController extends Controller
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
-        $request->user()->fill($request->validated());
+        $request->user()->update($request->validated());
 
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
-        }
-
-        $request->user()->save();
-
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+        return Redirect::route('profile.edit')->with('success', 'profile-updated');
     }
+
 
     /**
      * Delete the user's account.

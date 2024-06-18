@@ -27,8 +27,8 @@
                                        class="col-md-4 mb-2 col-form-label text-mb-right">{{ __('Last Name') }}</label>
                                 <div class="col-md-6">
                                     <input id="lastname" type="text"
-                                           class="form-control @error('lastname') is-invalid @enderror" name="lastname"
-                                           value="{{ old('lastname') }}" required autocomplete="firstname">
+                                           class="form-control @error('lastname') is-invalid @enderror" name="last_name"
+                                           value="{{ old('lastname') }}">
                                 </div>
                             </div>
 
@@ -38,8 +38,7 @@
                                 <div class="col-md-6">
                                     <input id="firstname" type="text"
                                            class="form-control @error('firstname') is-invalid @enderror"
-                                           name="firstname" value="{{ old('firstname') }}" required
-                                           autocomplete="lastname">
+                                           name="first_name" value="{{ old('firstname') }}">
                                 </div>
                             </div>
 
@@ -49,8 +48,7 @@
                                 <div class="col-md-6">
                                     <input id="middlename" type="text"
                                            class="form-control @error('middlename') is-invalid @enderror"
-                                           name="middlename" value="{{ old('middlename') }}" required
-                                           autocomplete="middlename">
+                                           name="middle_name" value="{{ old('middlename') }}">
                                 </div>
                             </div>
 

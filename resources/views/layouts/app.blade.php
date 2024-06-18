@@ -24,6 +24,7 @@
     @yield('content')
     @yield('main')
     @yield('edit')
+    @yield('profile')
 
     <div class="container">
         @yield('about')
