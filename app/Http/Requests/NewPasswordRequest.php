@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Doctrine\Inflector\Rules\French\Rules;
 use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Controllers\Auth\NewPasswordController;
 
 class NewPasswordRequest extends FormRequest
 {

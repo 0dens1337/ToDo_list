@@ -68,6 +68,17 @@
                                 @enderror
                             </div>
 
+                            <div class="form-group row">
+                                <label for="birthday"
+                                       class="col-md-4 mb-2 col-form-label text-md-right">{{ __('Your Birthday') }}</label>
+
+                                <div class="col-md-6">
+                                    <input id="birthday" type="date"
+                                           class="form-control datepicker @error('birthday') is-invalid @enderror"
+                                           name="birthday">
+                                </div>
+                            </div>
+
                             <div class="form-group row justify-content-center">
                                 <label for="role">Role</label>
                                 <select name="role" id="role" class="form-control w-50 text-center">

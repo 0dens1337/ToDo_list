@@ -61,6 +61,7 @@ class ProfileController extends Controller
 
         $user = $request->user();
 
+
         Auth::logout();
 
         $user->delete();
@@ -68,6 +69,6 @@ class ProfileController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return Redirect::to('/');
+        return Redirect::to('home');
     }
 }

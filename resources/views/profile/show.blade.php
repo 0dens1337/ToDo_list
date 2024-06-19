@@ -7,7 +7,7 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="d-flex flex-column align-items-center text-center">
-                                <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150">
+                                <img src="https://img1.picmix.com/output/stamp/normal/8/8/2/3/2453288_4eb09.png" alt="Admin" class="rounded-circle" width="150">
                                 <div class="mt-3">
                                     <h4>{{ Auth::user()->name }}</h4>
                                 </div>
@@ -80,6 +80,15 @@
                             <hr>
                             <div class="row">
                                 <div class="col-sm-3">
+                                    <h6 class="mb-0">Birthday</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    {{ $user->birthday }}
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
                                     <h6 class="mb-0">Role</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
@@ -100,6 +109,14 @@
                                 <div class="col-sm-12">
                                     <a href="{{ route('profile.edit') }}" class="btn btn-info">Edit</a>
                                 </div>
+                            </div>
+                            <div class="row">
+                                <form action="{{ route('profile.destroy') }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+
+                                    <button type="submit" class="btn btn-outline-danger">Delete Profile</button>
+                                </form>
                             </div>
                         </div>
                     </div>
