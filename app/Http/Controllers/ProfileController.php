@@ -8,6 +8,7 @@ use App\Http\Requests\ProfileUpdateRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 
@@ -56,10 +57,16 @@ class ProfileController extends Controller
     public function destroy(Request $request): RedirectResponse
     {
         $request->validateWithBag('userDeletion', [
-            'password' => ['required', 'current_password'],
+            'password' => ['required', 'current_password', 'confirmed'],
+            'password_confirmation' => ['required'],
+
         ]);
 
         $user = $request->user();
+        if (!Hash::check($request->password, $user->password))
+        {
+            return back()->withErrors(['password' => 'Incorrect password']);
+        }
 
 
         Auth::logout();
@@ -69,6 +76,6 @@ class ProfileController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return Redirect::to('home');
+        return Redirect::to('/');
     }
 }

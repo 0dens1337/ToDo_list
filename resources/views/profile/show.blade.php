@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('profile')
+    @include('includes.error')
     <div class="container">
         <div class="main-body">
             <div class="row gutters-sm">
@@ -105,18 +106,12 @@
                                 </div>
                             </div>
                             <hr>
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <a href="{{ route('profile.edit') }}" class="btn btn-info">Edit</a>
+                            <div class="container mt-2">
+                                <div class="row">
+                                    <div class="col-sm-12 d-flex justify-content-center">
+                                        <a href="{{ route('profile.edit') }}" class="btn btn-outline-info">Edit</a>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <form action="{{ route('profile.destroy') }}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-
-                                    <button type="submit" class="btn btn-outline-danger">Delete Profile</button>
-                                </form>
                             </div>
                         </div>
                     </div>
