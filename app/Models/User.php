@@ -58,7 +58,7 @@ class User extends Authenticatable
     protected function birthday(): Attribute
     {
         return Attribute::get(function ($value){
-           return $value ? Carbon::parse($value)->format('d M Y'): null;
+           return Carbon::parse($value)->format('d M Y');
         });
     }
 
