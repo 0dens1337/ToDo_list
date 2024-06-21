@@ -3,6 +3,10 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Enums\GenderEnum;
+use App\Enums\RoleEnum;
+use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -22,6 +26,12 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'last_name',
+        'first_name',
+        'middle_name',
+        'birthday',
+        'gender',
+        'role',
     ];
 
     /**
@@ -32,6 +42,7 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+
     ];
 
     /**
@@ -41,10 +52,30 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'birthday' => 'date'
     ];
+
+    protected function birthday(): Attribute
+    {
+        return Attribute::get(fn ($value)=>Carbon::parse($value)->format('d M Y'));
+
+    }
+
+    public function getRoleNameAttribute(): string
+    {
+        return RoleEnum::list()[$this->role];
+    }
+
+    public function getGenderNameAttribute(): string
+    {
+        return GenderEnum::list()[$this->gender];
+    }
 
     public function tasks(): HasMany
     {
         return $this->hasMany(Task::class);
     }
+
+
+
 }

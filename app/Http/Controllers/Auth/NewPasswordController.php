@@ -1,42 +1,33 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Auth;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\NewPasswordRequest;
-use Couchbase\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Support\Str;
-use Illuminate\Http\Request;
 
 class NewPasswordController extends Controller
 {
 
     public function create(Request $request)
     {
-        return view('auth.reset-password', ['request' => $request]);
+        return view('auth.change-password', ['request' => $request]);
     }
 
     public function store(NewPasswordRequest $request): RedirectResponse
     {
-        $status = Password::reset(
-            $request->only('email', 'password', 'password_confirmation', 'token'),
-            function ($user, $password) {
-                $user->forceFill([
-                    'password' => Hash::make($password),
-                    'remember_token' => Str::random(60),
-                ])->save();
+        if(!Hash::check($request->current_password, Auth::user()->password)){
 
-                event(new PasswordReset($user));
-            }
-        );
-
-        if ($status == Password::PASSWORD_RESET) {
-            return redirect()->route('login')->with('status', __($status));
+            return back()->withErrors(['current_password' => 'Current password incorrect']);
         }
+        Auth::user()->update(['password' => Hash::make($request->new_password),]);
 
-        return back()->withErrors(['email' => [__($status)]]);
+        return redirect()->route('profile.edit')->with('status', 'Password changed successfully!');
     }
 }

@@ -6,10 +6,10 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mx-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="/">Home <span class="sr-only"></span></a>
+                <a class="nav-link" href="{{ route('home') }}">Home <span class="sr-only"></span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/about">About</a>
+                <a class="nav-link" href="{{ route('profile.edit') }}">About</a>
             </li>
         </ul>
         @guest
@@ -24,10 +24,11 @@
         @else
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item dropdown">
-                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         {{ Auth::user()->name }} <span class="caret"></span>
                     </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="{{ route('profile.show') }}">Profile</a>
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
                                 <button class=" btn-outline-danger dropdown-item" type="submit">Logout</button>
