@@ -57,9 +57,8 @@ class User extends Authenticatable
 
     protected function birthday(): Attribute
     {
-        return Attribute::get(function ($value){
-           return Carbon::parse($value)->format('d M Y');
-        });
+        return Attribute::get(fn ($value)=>Carbon::parse($value)->format('d M Y'));
+
     }
 
     public function getRoleNameAttribute(): string
