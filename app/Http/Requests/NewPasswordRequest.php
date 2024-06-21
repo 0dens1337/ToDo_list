@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Doctrine\Inflector\Rules\French\Rules;
 use Illuminate\Foundation\Http\FormRequest;
-use App\Http\Controllers\Auth\NewPasswordController;
+
 
 class NewPasswordRequest extends FormRequest
 {
@@ -24,9 +24,8 @@ class NewPasswordRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'token' => ['required'],
-            'email' => ['required', 'email'],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'current_password' => ['required'],
+            'new_password' => ['required', 'string', 'min:8', 'confirmed'],
         ];
     }
 }

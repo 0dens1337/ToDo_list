@@ -107,17 +107,68 @@
                                     </div>
                                 </div>
                             <div class="row mt-3">
-                                <div class="col-sm-12">
-                                    <a type="submit" class="btn btn-outline-light">
-                                        {{ __('Save') }}
-                                    </a>
+                                <div class="col-sm-12 mb-2">
+                                    <button type="submit" class="btn btn-outline-info">
+                                        {{ __('Save Changes') }}
+                                    </button>
                                 </div>
                             </div>
+                        </div>
+                        </form>
+
+                            <button type="button" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#changePasswordModal">
+                                Change Password
+                            </button>
+
+                            <div class="modal fade" id="changePasswordModal" tabindex="-1" aria-labelledby="changePasswordModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="changePasswordModalLabel">Change Password</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form method="POST" action="{{ route('password.change.post') }}">
+                                                @csrf
+
+                                                <div class="mb-3">
+                                                    <label for="current_password" class="form-label">Current Password</label>
+                                                    <input type="password" class="form-control" id="current_password" name="current_password" required>
+                                                    @error('current_password')
+                                                    <div class="text-danger">{{ $message }}</div>
+                                                    @enderror
+                                                </div>
+
+                                                <div class="mb-3">
+                                                    <label for="new_password" class="form-label">New Password</label>
+                                                    <input type="password" class="form-control" id="new_password" name="new_password" required>
+                                                    @error('new_password')
+                                                    <div class="text-danger">{{ $message }}</div>
+                                                    @enderror
+                                                </div>
+
+                                                <div class="mb-3">
+                                                    <label for="new_password_confirmation" class="form-label">Confirm New Password</label>
+                                                    <input type="password" class="form-control" id="new_password_confirmation" name="new_password_confirmation" required>
+                                                </div>
+
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                    <button type="submit" class="btn btn-primary">Save changes</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
                                 <hr>
-                                <div class="container d-flex justify-content-center mt-5">
+                                <div class="container d-flex justify-content-center mt-2">
                                 <div class="card text-center" style="width: 18rem;">
                                     <div class="card-body">
                                         <h5 class="card-title">Deletion</h5>
+                                        <h6>This option will delete your profile from our site. In case if you will ever want to return back you can always return back profile by contacting to us. But we hope you will never click the button bellow c: </h6>
                                             <div>
                                                 <a type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#deleteModal">Delete</a>
                                             </div>
@@ -154,10 +205,9 @@
                                 </div>
                                 </div>
                             </div>
-                        </form>
+
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 @endsection
