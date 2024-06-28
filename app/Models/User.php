@@ -76,6 +76,9 @@ class User extends Authenticatable
         return $this->hasMany(Task::class);
     }
 
-
+    public function folders(): HasMany
+    {
+        return $this->hasMany(Folder::class);
+    }
 
 }

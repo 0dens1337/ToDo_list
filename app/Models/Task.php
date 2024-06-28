@@ -11,11 +11,14 @@ class Task extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'description'];
+    protected $fillable = ['title', 'description', 'name', 'user_id', 'folder_id'];
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
-
+    public function folder(): BelongsTo
+    {
+        return $this->belongsTo(Folder::class);
+    }
 }

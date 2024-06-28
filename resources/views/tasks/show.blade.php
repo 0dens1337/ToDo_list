@@ -7,6 +7,7 @@
         <div class="card-body">
             <p><strong>ID:</strong>{{ $task->id }}</p>
             <p><strong>Description:</strong>{{ $task->description }}</p>
+            <p><strong>Folder: {{ $task->folder ? $task->folder->name : 'None' }}</strong></p>
         </div>
         <a href="{{ route('tasks.edit', $task->id) }}" class="btn btn-warning m-auto">Edit</a>
         <form action="{{ route('tasks.destroy', $task->id) }}" method="POST" style="display: inline;">

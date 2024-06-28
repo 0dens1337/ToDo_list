@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\FolderRequest;
 use App\Http\Requests\StoreTaskRequest;
+use App\Models\Folder;
 use App\Models\Task;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -14,9 +16,10 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $tasks = Auth::user()->tasks()->paginate(10);
+        $tasks = Auth::user()->tasks()->with('folder')->paginate(10);
+        $folders = Folder::all();
 
-        return view('tasks.index', compact('tasks'));
+        return view('tasks.index', compact('tasks', 'folders'));
     }
 
     /**
@@ -24,22 +27,28 @@ class TaskController extends Controller
      */
     public function create()
     {
-        return view('tasks.create');
+        $folders = Folder::pluck('name', 'id');
+
+        return view('tasks.create', compact('folders'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreTaskRequest $request)
+    public function store(StoreTaskRequest $request, Folder $folder)
     {
-        Auth::user()->tasks()->create($request->validated());
+        $validatedData = $request->validated();
+        $validatedData['folder_id'] = $folder->id;
+        dd($request);
+        Auth::user()->tasks()->create($validatedData);
 
-        return redirect()->route('tasks.index');
+        return redirect()->route('tasks.index',  $folder->id);
     }
 
     /**
      * Display the specified resource.
      */
+
     public function show(Task $task)
     {
         return view('tasks.show', compact('task'));
@@ -48,9 +57,12 @@ class TaskController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Task $task)
+    public function edit($id)
     {
-        return view('tasks.edit', compact('task'));
+        $task = Task::findOrFail($id);
+        $folders = Folder::pluck('name', 'id');
+
+        return view('tasks.edit', compact('task', 'folders'));
     }
 
     /**
