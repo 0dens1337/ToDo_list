@@ -39,7 +39,7 @@ class TaskController extends Controller
     {
         Auth::user()->tasks()->create($request->validated());
 
-        return redirect()->route('tasks.index',  $folder->id);
+        return redirect()->route('tasks.index');
     }
 
     /**
