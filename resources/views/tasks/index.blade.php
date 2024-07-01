@@ -39,6 +39,7 @@
                         <th>Title</th>
                         <th>Description</th>
                         <th>Folders</th>
+                        <th>Status</th>
                         <th>Actions</th>
                     </tr>
                     </thead>
@@ -49,6 +50,7 @@
                             <td>{{ $task->title }}</td>
                             <td>{{ $task->description }}</td>
                             <td>{{ optional($task->folder)->name ?? 'No Folder' }}</td>
+                            <td>{{ $task->completed ? 'Completed': 'In progress'}}</td>
                             <td>
                                 <a href="{{ route('tasks.show', $task->id) }}" class="btn btn-outline-primary btn-sm">View</a>
                                 <form action="{{ route('tasks.destroy', $task->id) }}" method="POST" style="display:inline;">

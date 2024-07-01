@@ -39,7 +39,6 @@ class TaskController extends Controller
     {
         $validatedData = $request->validated();
         $validatedData['folder_id'] = $folder->id;
-        dd($request);
         Auth::user()->tasks()->create($validatedData);
 
         return redirect()->route('tasks.index',  $folder->id);
