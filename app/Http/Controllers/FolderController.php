@@ -11,7 +11,7 @@ class FolderController extends Controller
 {
     public function index()
     {
-        $folders = Auth::user()->folders;
+        $folders = Auth::user()->folders()->paginate(10);
 
         return view('folders.index', compact('folders'));
     }
@@ -44,7 +44,6 @@ class FolderController extends Controller
     public function update(FolderRequest $request, Folder $folder)
     {
         $folder->update($request->validated());
-
 
         return redirect()->route('folders.index');
     }

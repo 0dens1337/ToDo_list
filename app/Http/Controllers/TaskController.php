@@ -37,9 +37,7 @@ class TaskController extends Controller
      */
     public function store(StoreTaskRequest $request, Folder $folder)
     {
-        $validatedData = $request->validated();
-        $validatedData['folder_id'] = $folder->id;
-        Auth::user()->tasks()->create($validatedData);
+        Auth::user()->tasks()->create($request->validated());
 
         return redirect()->route('tasks.index',  $folder->id);
     }
@@ -56,9 +54,8 @@ class TaskController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($id)
+    public function edit(Task $task)
     {
-        $task = Task::findOrFail($id);
         $folders = Folder::pluck('name', 'id');
 
         return view('tasks.edit', compact('task', 'folders'));

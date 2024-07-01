@@ -1,5 +1,4 @@
 @extends('layouts.app')
-
 @section('content')
     <h1>Create Folder</h1>
     <div class="container mt-3">

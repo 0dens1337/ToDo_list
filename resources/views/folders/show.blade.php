@@ -21,7 +21,7 @@
             @endif
         </div>
         <div class="text-center mt-4">
-            <a href="{{ route('tasks.create', ['folder_id' => '$folder->id']) }}" class="btn btn-outline-info">Create Tasks in Folder: {{ $folder->name }}</a>
+            <a href="{{ route('tasks.create', $folder) }}" class="btn btn-outline-info">Create Tasks in Folder: {{ $folder->name }}</a>
         </div>
         <div class="text-center mt-4">
             <form action="{{ route('folders.destroy', $folder->id) }}" method="POST" style="display:inline;">
