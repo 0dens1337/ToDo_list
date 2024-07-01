@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('tasks', function (Blueprint $table) {
-            $table->boolean('completed')->default(false);
+            $table->boolean('is_completed')->default(false);
         });
     }
 
@@ -22,7 +22,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('tasks', function (Blueprint $table) {
-            $table->dropColumn('completed');
+            $table->dropColumn('is_completed');
         });
     }
 };

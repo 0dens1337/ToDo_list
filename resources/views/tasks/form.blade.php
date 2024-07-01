@@ -38,8 +38,8 @@
 
         @if (isset($task))
             <div class="mb-3">
-                <label for="completed">Completed</label>
-                <input type="checkbox" name="completed" id="completed" value="1" {{ $task->completed ? 'checked' : '' }}>
+                <label for="is_completed">Completed</label>
+                <input type="checkbox" name="is_completed" id="is_completed" value="1" {{ $task->is_completed ? 'checked' : '' }}>
             </div>
         @endif
 

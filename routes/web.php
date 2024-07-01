@@ -21,6 +21,7 @@ use App\Http\Controllers;
 Route::middleware('auth')->group(function () {
     Route::get('/profile/show', [ProfileController::class, 'show'])->name('profile.show');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::post('/profile/avatar', [ProfileController::class, 'updateAvatar'])->name('profile.updateAvatar');
     Route::get('/change-password', [NewPasswordController::class, 'create'])->name('password.change');
     Route::post('/change-password', [NewPasswordController::class, 'store'])->name('password.change.post');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

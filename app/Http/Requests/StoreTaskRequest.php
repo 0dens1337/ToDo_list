@@ -25,7 +25,7 @@ class StoreTaskRequest extends FormRequest
             'title' => ['required', 'string', 'max:255'],
             'description' => ['required', 'string', 'max:255'],
             'folder_id' => ['nullable', 'exists:folders,id'],
-            'completed' => ['boolean']
+            'is_completed' => ['boolean']
         ];
     }
 }

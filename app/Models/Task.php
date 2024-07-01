@@ -17,7 +17,7 @@ class Task extends Model
         'name',
         'user_id',
         'folder_id',
-        'completed'
+        'is_completed'
     ];
     public function user(): BelongsTo
     {
