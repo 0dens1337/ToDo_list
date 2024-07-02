@@ -26,6 +26,9 @@
             </div>
         @endforeach
     </div>
+    <div class="d-flex justify-content-center">
+        {{ $folders->links() }}
+    </div>
     <div class="list-group m-auto mb-4 mt-4 border-0">
         <a href="{{ route('tasks.create') }}" class="btn btn-outline-primary">Create your own To-Do list!</a>
     </div>

@@ -17,7 +17,7 @@ class TaskController extends Controller
     public function index()
     {
         $tasks = Auth::user()->tasks()->with('folder')->paginate(10);
-        $folders = Folder::all();
+        $folders = Folder::paginate(5);
 
         return view('tasks.index', compact('tasks', 'folders'));
     }
