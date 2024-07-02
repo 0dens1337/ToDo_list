@@ -27,8 +27,6 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::resource('folders', FolderController::class);
-    Route::post('/folders/{folder}/tasks', [TaskController::class, 'store'])->name('tasks.store');
-    Route::get('/folders/{folder}/tasks/create', [TaskController::class, 'create'])->name('tasks.create');
     Route::resource('tasks', TaskController::class);
 });
 
